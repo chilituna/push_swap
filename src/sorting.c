@@ -6,12 +6,13 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:42:14 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/20 15:19:08 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:17:16 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//sort stack with 2 elements
 void	sort_two(t_stack **stack_a)
 {
 	if ((*stack_a)->nr > (*stack_a)->next->nr)
@@ -21,6 +22,7 @@ void	sort_two(t_stack **stack_a)
 	}
 }
 
+//sort stack with 3 elements
 void	sort_three(t_stack **a)
 {
 	while (a_is_sorted(a) == 0)
@@ -43,6 +45,7 @@ void	sort_three(t_stack **a)
 	}
 }
 
+//sort stack with more than 3 elements
 void	sort_more(t_stack **stack_a, t_stack **stack_b)
 {
 	while (nr_count(*stack_a) > 3)
@@ -71,8 +74,10 @@ void	sort_more(t_stack **stack_a, t_stack **stack_b)
 	// print_stack(*stack_a);
 	calc_current_pos(stack_a);
 	min_to_top(stack_a);
+	// print_stack(*stack_a);
 }
 
+//rotate stack until smallest number is on top
 void	min_to_top(t_stack **stack_a)
 {
 	t_stack	*tmp;
@@ -81,14 +86,16 @@ void	min_to_top(t_stack **stack_a)
 	rotate_a(stack_a, tmp);
 }
 
-void	sorting(t_stack *stack_a, t_stack *stack_b)
+//sort stack
+t_stack	*sorting(t_stack *stack_a, t_stack *stack_b)
 {
 	if (nr_count(stack_a) == 1)
-		return ;
+		exit (0);
 	if (nr_count(stack_a) == 2)
 		sort_two(&stack_a);
 	else if (nr_count(stack_a) == 3)
 		sort_three(&stack_a);
 	else
 		sort_more(&stack_a, &stack_b);
+	return (stack_a);
 }

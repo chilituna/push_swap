@@ -6,7 +6,7 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:20:51 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/20 15:19:19 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/09/23 12:41:01 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,44 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
+//validation
 int		main(int argc, char **argv);
-void	validate_input(char **argv);
-int		check_digits(char **argv);
-int		check_duplicates(char **argv);
-int		check_integers(char **argv);
+void	validate_input(char **arg_arr);
+int		check_digits(char **arg_arr);
+int		check_duplicates(char **arg_arr);
+int		check_integers(char **arg_arr);
 int		a_is_sorted(t_stack **stack_a);
 
-char	**create_argv(int argc, char **argv);
-t_stack	*create_stack(char **argv);
-t_stack	*init_stack(t_stack *tmp, char **argv, int i);
+//init and clear
+char	**create_arg_arr(int argc, char **argv);
+t_stack	*create_stack(char **arg_arr);
+void	init_stack(t_stack *tmp, char **arg_arr, int i);
+void	clear_all(t_stack **stack , t_stack **last);
 
+//operations
 void	swap(t_stack **stack);
 void	push(t_stack **stack_1, t_stack **stack_2);
 void	rotate(t_stack **stack);
 void	reverse_rotate(t_stack **stack);
 
-void	sorting(t_stack *stack_a, t_stack *stack_b);
+//sort
+t_stack	*sorting(t_stack *stack_a, t_stack *stack_b);
 void	sort_two(t_stack **stack_a);
 void	sort_three(t_stack **stack_a);
 void	sort_more(t_stack **stack_a, t_stack **stack_b);
 
+//calculations
 void	calc_current_pos(t_stack **stack);
 void	calc_target_node(t_stack **stack_a, t_stack **stack_b);
 t_stack	*find_min(t_stack *stack);
 int		nr_count(t_stack *stack);
 
+//determine best move
 void	calc_cost(t_stack **stack_a, t_stack **stack_b);
 t_stack	*find_cheapest(t_stack **stack_b);
+int	move_both_bonus(t_stack *a, t_stack *b);
 
+//move to target
 void	move_to_target(t_stack **stack_a, t_stack **stack_b);
 void	rotate_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target);
 void	revrot_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target);
@@ -62,5 +71,5 @@ void	rotate_a(t_stack **stack_a, t_stack *target_node);
 void	rotate_b(t_stack **stack_b, t_stack *cheapest_node);
 void	min_to_top(t_stack **stack_a);
 
-// void   print_stack(t_stack *stack);
+void   print_stack(t_stack *stack);
 #endif

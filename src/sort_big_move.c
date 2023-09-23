@@ -6,12 +6,13 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:46:22 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/20 14:19:28 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/09/23 17:26:40 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//move cheapest node to the top of stack a
 void	move_to_target(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*cheapest;
@@ -21,14 +22,17 @@ void	move_to_target(t_stack **stack_a, t_stack **stack_b)
 	target = cheapest->target;
 	if (cheapest->above_median == 1 && target->above_median == 1)
 		rotate_ab(stack_a, stack_b, cheapest, target);
-	else if (target->above_median == 0 && target->above_median == 0)
+	else if (cheapest->above_median == 0 && target->above_median == 0)
 		revrot_ab(stack_a, stack_b, cheapest, target);
+	calc_current_pos(stack_a);
 	rotate_a(stack_a, target);
+	calc_current_pos(stack_b);
 	rotate_b(stack_b, cheapest);
 	push(stack_a, stack_b);
 	write(1, "pa\n", 3);
 }
 
+//rotate both stacks until cheapest node is on top of stack b or target node is on top of stack a
 void	rotate_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 {
 	t_stack	*tmp_a;
@@ -41,11 +45,12 @@ void	rotate_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 		rotate(a);
 		rotate(b);
 		write(1, "rr\n", 3);
-		tmp_a = tmp_a->next;
-		tmp_b = tmp_b->next;
+		tmp_a = *a;
+		tmp_b = *b;
 	}
 }
 
+//reverse rotate both stacks until cheapest node is on top of stack b or target node is on top of stack a
 void	revrot_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 {
 	t_stack	*tmp_a;
@@ -58,11 +63,12 @@ void	revrot_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 		reverse_rotate(a);
 		reverse_rotate(b);
 		write(1, "rrr\n", 4);
-		tmp_a = tmp_a->next;
-		tmp_b = tmp_b->next;
+		tmp_a = *a;
+		tmp_b = *b;
 	}
 }
 
+//rotate stack a until target node is on top
 void	rotate_a(t_stack **stack_a, t_stack *target_node)
 {
 	if (target_node->above_median == 1)
@@ -83,6 +89,7 @@ void	rotate_a(t_stack **stack_a, t_stack *target_node)
 	}
 }
 
+//rotate stack b until cheapest node is on top
 void	rotate_b(t_stack **stack_b, t_stack *cheapest_node)
 {
 	if (cheapest_node->above_median == 1)
