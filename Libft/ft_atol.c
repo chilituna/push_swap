@@ -6,7 +6,7 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 18:01:12 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/20 12:42:30 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/10/01 12:03:36 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ long	ft_atol(const char *str)
 	sign = 1;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '-')
-		sign = -1;
 	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	if (str[i] == '0')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nb = nb * 10 + str[i] - 48;
 		i++;
 	}
-	return (sign * nb);
+	return (nb * sign);
 }
 /*
 int	main(void)

@@ -6,7 +6,7 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:39:33 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/23 11:48:35 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/10/01 11:53:43 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 //validate input
 void	validate_input(char **arg_arr)
 {
-	int	i;
-	
-	i = 0;
-	if (check_digits(arg_arr) == 0 || check_duplicates(arg_arr) == 0 
-		|| check_integers(arg_arr) == 0)
+	if (check_digits(arg_arr) == 0 || check_integers(arg_arr) == 0)
 	{
 		write(1, "Error\n", 6);
-		while (arg_arr[i])
-			free(arg_arr[i++]);
-		free(arg_arr);
+		clear_arr(arg_arr);
 		exit(1);
 	}
 }
@@ -34,13 +28,11 @@ int	check_digits(char **arg_arr)
 {
 	int	i;
 	int	j;
-	int	k;
 
 	i = 0;
 	while (arg_arr[i])
 	{
 		j = 0; 
-		k = 0;
 		if (arg_arr[i][j] == '-' || arg_arr[i][j] == '+')
 			j++;
 		while (arg_arr[i][j])
@@ -48,9 +40,6 @@ int	check_digits(char **arg_arr)
 			if (!ft_isdigit(arg_arr[i][j]))
 				return (0);
 			j++;
-			k++;
-			if (k > 10)
-				return (0);
 		}
 		i++;
 	}
@@ -58,25 +47,27 @@ int	check_digits(char **arg_arr)
 }
 
 //check for duplicates
-int	check_duplicates(char **arg_arr)
+void	check_duplicates(t_stack **stack)
 {
-	int	i;
-	int	j;
+	t_stack	*tmp;
+	t_stack	*tmp2;
 
-	i = 0;
-	while (arg_arr[i])
+	tmp = *stack;
+	while (tmp)
 	{
-		j = i + 1;
-		while (arg_arr[j])
+		tmp2 = tmp->next;
+		while (tmp2)
 		{
-			if (ft_strncmp(arg_arr[i], arg_arr[j], ft_strlen(arg_arr[i])) == 0 
-				&& ft_strlen(arg_arr[i]) == ft_strlen(arg_arr[j]))
-				return (0);
-			j++;
+			if (tmp->nr == tmp2->nr)
+			{
+				write(1, "Error\n", 6);
+				clear_stack(stack, &tmp);
+				exit(1);
+			}
+			tmp2 = tmp2->next;
 		}
-		i++;
+		tmp = tmp->next;
 	}
-	return (1);
 }
 
 //check if all arguments are integers

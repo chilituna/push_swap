@@ -6,7 +6,7 @@
 #    By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/06 14:31:01 by aarponen          #+#    #+#              #
-#    Updated: 2023/09/13 12:46:35 by aarponen         ###   ########.fr        #
+#    Updated: 2023/09/24 14:29:22 by aarponen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = Libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 
 SRC_DIR = src
-SRC_FILES = main.c validation.c sort_moves.c sorting.c sort_big_pos.c sort_big_cost.c sort_big_move.c
+SRC_FILES = main.c create_stack.c validation.c sort_moves.c sorting.c sort_big_pos.c sort_big_cost.c sort_big_move.c
 OBJ_DIR = obj
 OBJ_FILES = $(addprefix $(OBJ_DIR)/,$(SRC_FILES:.c=.o))
 

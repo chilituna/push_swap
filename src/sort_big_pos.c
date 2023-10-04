@@ -6,7 +6,7 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 12:35:50 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/23 15:38:07 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:33:09 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_stack	*find_min(t_stack *stack)
 	return (min_node);
 }
 
-//calculate how many numberr there are in stack
+//calculate how many numbers there are in stack
 int	nr_count(t_stack *stack)
 {
 	t_stack	*tmp;

@@ -6,7 +6,7 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:46:22 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/23 17:26:40 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:18:39 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	move_to_target(t_stack **stack_a, t_stack **stack_b)
 	write(1, "pa\n", 3);
 }
 
-//rotate both stacks until cheapest node is on top of stack b or target node is on top of stack a
+//rotate both stacks until cheapest node is on top of stack b 
+//or target node is on top of stack a
 void	rotate_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 {
 	t_stack	*tmp_a;
@@ -50,7 +51,8 @@ void	rotate_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 	}
 }
 
-//reverse rotate both stacks until cheapest node is on top of stack b or target node is on top of stack a
+//reverse rotate both stacks until cheapest node is on top of stack b 
+//or target node is on top of stack a
 void	revrot_ab(t_stack **a, t_stack **b, t_stack *cheapest, t_stack *target)
 {
 	t_stack	*tmp_a;

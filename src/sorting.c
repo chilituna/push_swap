@@ -6,7 +6,7 @@
 /*   By: aarponen <aarponen@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:42:14 by aarponen          #+#    #+#             */
-/*   Updated: 2023/09/23 17:17:16 by aarponen         ###   ########.fr       */
+/*   Updated: 2023/09/24 14:09:20 by aarponen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,10 @@ void	sort_more(t_stack **stack_a, t_stack **stack_b)
 		calc_current_pos(stack_b);
 		calc_target_node(stack_a, stack_b);
 		calc_cost(stack_a, stack_b);
-		// write (1, "Stack A:\n", 9);
-		// print_stack(*stack_a);
-		// write (1, "Stack B:\n", 9);
-		// print_stack (*stack_b);
 		move_to_target(stack_a, stack_b);
 	}
-	// print_stack(*stack_a);
 	calc_current_pos(stack_a);
 	min_to_top(stack_a);
-	// print_stack(*stack_a);
 }
 
 //rotate stack until smallest number is on top
