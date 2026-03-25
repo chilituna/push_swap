@@ -1,4 +1,4 @@
-# Push Swap
+![Push Swap](images/push_swap_banner.png)
 
 A C program that sorts integers using two stacks and a restricted instruction set while minimizing the total number of operations.
 
@@ -20,14 +20,16 @@ Project score:
 
 ## Demo / Screenshots
 
-Add your visuals here:
-- `[GIF] Sorting 100 random numbers`
-- `[GIF] Sorting 500 random numbers`
-- `[Screenshot] Operation count benchmark output`
-- `[Screenshot] Push_swap visualizer run`
+### Example Input / Output
+
+![Push Swap Example](images/push_swap_example.png)
+
+### Sorting Demo (GIF)
+
+![Push Swap Demo](images/push_swap.gif)
 
 Example visualizer:
-- https://push-swap-visualizer.vercel.app/
+- https://github.com/o-reo/push_swap_visualizer
 
 ## Tech Stack
 
@@ -63,6 +65,43 @@ Important modules:
 - Cost-based selection of best next move
 - Separate strategies for small and large datasets
 - Clean memory handling and project build structure
+
+## Operations Reference
+
+`push_swap` can only use a limited instruction set:
+
+- `sa`: swap the first two elements of stack A
+- `sb`: swap the first two elements of stack B
+- `ss`: execute `sa` and `sb` simultaneously
+- `pa`: push the top element from stack B to stack A
+- `pb`: push the top element from stack A to stack B
+- `ra`: rotate stack A upward (first element moves to the bottom)
+- `rb`: rotate stack B upward (first element moves to the bottom)
+- `rr`: execute `ra` and `rb` simultaneously
+- `rra`: reverse rotate stack A (last element moves to the top)
+- `rrb`: reverse rotate stack B (last element moves to the top)
+- `rrr`: execute `rra` and `rrb` simultaneously
+
+The core challenge is to sort correctly while minimizing the number of these operations.
+
+## Input Format
+
+`push_swap` accepts a list of integers from the command line and supports two input styles:
+
+- Space-separated arguments:
+- `./push_swap 3 2 1 6 5 4`
+- Single quoted string:
+- `./push_swap "3 2 1 6 5 4"`
+
+Input rules:
+- Values must be valid 32-bit signed integers (`INT_MIN` to `INT_MAX`)
+- No duplicates are allowed
+- Only numeric input is accepted (optional leading `+` or `-`)
+- Invalid input prints `Error` to standard error
+
+Behavior:
+- If the input is already sorted, no operations are printed
+- Otherwise, the program prints the optimized sequence of allowed operations, one per line
 
 ## Getting Started
 
